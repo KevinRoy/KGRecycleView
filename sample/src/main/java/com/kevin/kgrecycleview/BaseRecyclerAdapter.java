@@ -1,4 +1,4 @@
-package com.kevin.lib;
+package com.kevin.kgrecycleview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

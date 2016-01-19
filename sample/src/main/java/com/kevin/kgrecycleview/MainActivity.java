@@ -41,8 +41,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.append(strings);
 
         list.Builder(this)
+                .addDrawable(getResources().getDrawable(R.drawable.sample))
                 .addLinearlayout()
+                .addOrientation(KGRecyclerView.VERTICAL_LINEAR)
                 .addAdapter(adapter)
+                .addleftMargin(40)
+                .addRightMargin(40)
+                .addTopMargin(20)
+                .addButtomMargin(20)
                 .build();
     }
 }

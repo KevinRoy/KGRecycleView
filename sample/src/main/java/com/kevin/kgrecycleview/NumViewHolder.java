@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kevin.lib.BaseViewHolder;
-
 import butterknife.Bind;
 
 /**

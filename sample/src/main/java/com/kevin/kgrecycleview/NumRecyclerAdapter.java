@@ -3,8 +3,6 @@ package com.kevin.kgrecycleview;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.kevin.lib.BaseRecyclerAdapter;
-
 /**
  * Created by kevin on 16/1/7.
  */
