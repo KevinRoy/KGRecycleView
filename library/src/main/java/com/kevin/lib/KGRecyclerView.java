@@ -41,6 +41,7 @@ public class KGRecyclerView extends RecyclerView {
     private int mLeftMargin = 0;
     private int mTopMargin = 0;
     private int mButtomMargin = 0;
+    private int mDivideSize = 0;
     private Drawable mDrawable;
 
     public KGRecyclerView(Context context) {
@@ -153,6 +154,11 @@ public class KGRecyclerView extends RecyclerView {
         return this;
     }
 
+    public KGRecyclerView addSize(int size) {
+        mDivideSize = KGRecyclerViewUtil.getDip(mContext, size);
+        return this;
+    }
+
     public KGRecyclerView build() {
         initViewManager();
 
@@ -206,6 +212,8 @@ public class KGRecyclerView extends RecyclerView {
             dividerLinearItemDecoration.setButtomMargin(mButtomMargin);
             dividerLinearItemDecoration.setTopMargin(mTopMargin);
         }
+
+        dividerLinearItemDecoration.setDividerSize(mDivideSize);
 
         addItemDecoration(dividerLinearItemDecoration);
     }
