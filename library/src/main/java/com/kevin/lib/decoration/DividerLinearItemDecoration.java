@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -80,10 +81,21 @@ public class DividerLinearItemDecoration extends BaseDividerItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        int postion = parent.getChildAdapterPosition(view);
+        int size = state.getItemCount();
+
         if (mOrientation == VERTICAL_LIST) {
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight() + mDividerSize);
+            if (postion == size - 1) {
+                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+            } else {
+                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight() + mDividerSize);
+            }
         } else {
-            outRect.set(0, 0, mDivider.getIntrinsicWidth() + mDividerSize, 0);
+            if (postion == size - 1) {
+                outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+            } else {
+                outRect.set(0, 0, mDivider.getIntrinsicWidth() + mDividerSize, 0);
+            }
         }
     }
 }

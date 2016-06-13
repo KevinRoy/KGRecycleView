@@ -129,22 +129,22 @@ public class KGRecyclerView extends RecyclerView {
         return this;
     }
 
-    public KGRecyclerView addRightMargin(int margin) {
+    public KGRecyclerView addDividerRightMargin(int margin) {
         mRightMargin = KGRecyclerViewUtil.getDip(mContext, margin);
         return this;
     }
 
-    public KGRecyclerView addTopMargin(int margin) {
+    public KGRecyclerView addDividerTopMargin(int margin) {
         mTopMargin = KGRecyclerViewUtil.getDip(mContext, margin);
         return this;
     }
 
-    public KGRecyclerView addButtomMargin(int margin) {
+    public KGRecyclerView addDividerButtomMargin(int margin) {
         mButtomMargin = KGRecyclerViewUtil.getDip(mContext, margin);
         return this;
     }
 
-    public KGRecyclerView addleftMargin(int margin) {
+    public KGRecyclerView addDividerleftMargin(int margin) {
         mLeftMargin = KGRecyclerViewUtil.getDip(mContext, margin);
         return this;
     }
@@ -154,7 +154,7 @@ public class KGRecyclerView extends RecyclerView {
         return this;
     }
 
-    public KGRecyclerView addSize(int size) {
+    public KGRecyclerView addDividerSize(int size) {
         mDivideSize = KGRecyclerViewUtil.getDip(mContext, size);
         return this;
     }
@@ -177,10 +177,10 @@ public class KGRecyclerView extends RecyclerView {
     }
 
     private void initViewManager() {
-        if (mLayoutManager instanceof LinearLayoutManager) {
+        if (mType == TYPE_LINEAR) {
             Log.d(TAG, "LinearLayoutManager");
             initViewLinearLayoutManager();
-        } else if (mLayoutManager instanceof StaggeredGridLayoutManager) {
+        } else if (mType == TYPE_STAGGERED) {
             Log.d(TAG, "StaggeredGridLayoutManager");
             initViewStaggeredGridLayoutManager();
         } else {
@@ -222,6 +222,10 @@ public class KGRecyclerView extends RecyclerView {
         DividerGridItemDecoration dividerGridItemDecoration;
         dividerGridItemDecoration = new DividerGridItemDecoration(mContext);
 
+        if (mDrawable != null) {
+            dividerGridItemDecoration.setDrawbale(mDrawable);
+        }
+
         if (mType == TYPE_STAGGERED) {
             if (mOrientation == -1) {
                 ((StaggeredGridLayoutManager) mLayoutManager).setOrientation(VERTICAL_STAGGERED);
@@ -234,6 +238,8 @@ public class KGRecyclerView extends RecyclerView {
         dividerGridItemDecoration.setLeftMargin(mLeftMargin);
         dividerGridItemDecoration.setButtomMargin(mButtomMargin);
         dividerGridItemDecoration.setTopMargin(mTopMargin);
+
+        dividerGridItemDecoration.setDividerSize(mDivideSize);
 
         addItemDecoration(dividerGridItemDecoration);
     }

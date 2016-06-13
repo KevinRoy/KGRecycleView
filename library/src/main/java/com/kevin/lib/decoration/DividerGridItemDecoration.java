@@ -42,10 +42,10 @@ public class DividerGridItemDecoration extends BaseDividerItemDecoration {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
 
-            int top = child.getTop() - params.topMargin;
-            int buttom = child.getBottom() + params.bottomMargin;
+            int top = child.getTop() - params.topMargin + mTopMargin;
+            int buttom = child.getBottom() + params.bottomMargin - mButtomMargin;
             int left = child.getRight() + params.rightMargin;
-            int right = left + mDivider.getIntrinsicWidth();
+            int right = left + mDivider.getIntrinsicWidth() + mDividerSize;
 
             mDivider.setBounds(left, top, right, buttom);
             mDivider.draw(canvas);
@@ -65,9 +65,9 @@ public class DividerGridItemDecoration extends BaseDividerItemDecoration {
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
 
             int top = child.getBottom() + params.bottomMargin;
-            int buttom = top + mDivider.getIntrinsicHeight();
-            int left = child.getLeft() - params.leftMargin;
-            int right = child.getRight() + params.rightMargin + mDivider.getIntrinsicWidth();
+            int buttom = top + mDivider.getIntrinsicHeight() + mDividerSize;
+            int left = child.getLeft() - params.leftMargin + mLeftMargin;
+            int right = child.getRight() + params.rightMargin + mDivider.getIntrinsicWidth() - mRightMargin;
 
             mDivider.setBounds(left, top, right, buttom);
             mDivider.draw(canvas);
@@ -152,18 +152,23 @@ public class DividerGridItemDecoration extends BaseDividerItemDecoration {
     }
 
     @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+    }
+
+    @Override
     public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
         int spanCount = getSpanCount(parent);
         int childCount = parent.getAdapter().getItemCount();
         // 如果是最后一行，则不需要绘制底部
         if (isLastRaw(parent, itemPosition, spanCount, childCount)) {
-            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+            outRect.set(0, 0, mDivider.getIntrinsicWidth() + mDividerSize, 0);
             // 如果是最后一列，则不需要绘制右边
         } else if (isLastColum(parent, itemPosition, spanCount, childCount)) {
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight() + mDividerSize);
         } else {
-            outRect.set(0, 0, mDivider.getIntrinsicWidth(),
-                    mDivider.getIntrinsicHeight());
+            outRect.set(0, 0, mDivider.getIntrinsicWidth() + mDividerSize,
+                    mDivider.getIntrinsicHeight() + mDividerSize);
         }
     }
 }

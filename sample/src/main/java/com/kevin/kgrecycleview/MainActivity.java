@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        setSupportActionBar(toolbar);
+
         adapter = new NumRecyclerAdapter(getLayoutInflater());
 
         List<String> strings = new ArrayList<String>();
@@ -41,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.append(strings);
 
         list.Builder(this)
-                .addDrawable(getResources().getDrawable(R.drawable.sample))
+//                .addOrientation(KGRecyclerView.HORIZONTAL_LINEAR)
                 .addLinearlayout()
-                .addOrientation(KGRecyclerView.HORIZONTAL_LINEAR)
                 .addAdapter(adapter)
-                .addSize(20)
-                .addleftMargin(40)
-                .addRightMargin(40)
-                .addTopMargin(20)
-                .addButtomMargin(20)
+                .addDividerSize(10)
                 .build();
     }
 }
