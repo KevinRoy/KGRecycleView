@@ -2,6 +2,8 @@ package com.kevin.lib.decoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,7 +17,8 @@ public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
             android.R.attr.listDivider
     };
 
-    protected Drawable mDivider;
+    protected ColorDrawable mDivider;
+    protected Drawable mDrawable;
     protected int mDividerSize;
     protected int mRightMargin = 0;
     protected int mLeftMargin = 0;
@@ -28,14 +31,16 @@ public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
      * @param context
      */
     protected void initDivider(Context context) {
-        TypedArray typedArray = context.obtainStyledAttributes(ATTRS);
-        mDivider = typedArray.getDrawable(0);
-        typedArray.recycle();
+//        TypedArray typedArray = context.obtainStyledAttributes(ATTRS);
+//        mDrawable = typedArray.getDrawable(0);
+//        typedArray.recycle();
+
+        mDivider = new ColorDrawable(0xffffffff);
     }
 
     /**
      * set divider size
-     *
+     *vvvvvvvv
      * @param size
      */
     public void setDividerSize(int size) {
@@ -43,11 +48,14 @@ public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     public void setDrawbale(Drawable drawable) {
-        mDivider = drawable;
+        mDivider = (ColorDrawable) drawable;
+    }
+
+    public void setDividerColor(int color) {
+        mDivider.setColor(color);
     }
 
     public void setRightMargin(int rightMargin) {
-
         mRightMargin = rightMargin;
     }
 

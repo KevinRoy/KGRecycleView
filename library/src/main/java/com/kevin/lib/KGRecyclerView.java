@@ -42,6 +42,7 @@ public class KGRecyclerView extends RecyclerView {
     private int mTopMargin = 0;
     private int mButtomMargin = 0;
     private int mDivideSize = 0;
+    private int mDivideColor = 0;
     private Drawable mDrawable;
 
     public KGRecyclerView(Context context) {
@@ -159,6 +160,11 @@ public class KGRecyclerView extends RecyclerView {
         return this;
     }
 
+    public KGRecyclerView addDividerColor(int color) {
+        mDivideColor = color;
+        return this;
+    }
+
     public KGRecyclerView build() {
         initViewManager();
 
@@ -195,6 +201,10 @@ public class KGRecyclerView extends RecyclerView {
 
         if (mDrawable != null) {
             dividerLinearItemDecoration.setDrawbale(mDrawable);
+        }
+
+        if (mDivideColor != 0){
+            dividerLinearItemDecoration.setDividerColor(mDivideColor);
         }
 
         if (mOrientation == -1) {

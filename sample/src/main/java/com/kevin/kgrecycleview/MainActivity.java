@@ -1,5 +1,6 @@
 package com.kevin.kgrecycleview;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         list.Builder(this)
 //                .addOrientation(KGRecyclerView.HORIZONTAL_LINEAR)
+                .addDividerColor(getResources().getColor(R.color.colorPrimaryDark))
                 .addLinearlayout()
                 .addAdapter(adapter)
                 .addDividerSize(10)
