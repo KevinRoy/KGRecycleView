@@ -13,10 +13,6 @@ import android.support.v7.widget.RecyclerView;
  */
 public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
 
-    protected static final int[] ATTRS = new int[]{
-            android.R.attr.listDivider
-    };
-
     protected ColorDrawable mDivider;
     protected Drawable mDrawable;
     protected int mDividerSize;
@@ -31,16 +27,13 @@ public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
      * @param context
      */
     protected void initDivider(Context context) {
-//        TypedArray typedArray = context.obtainStyledAttributes(ATTRS);
-//        mDrawable = typedArray.getDrawable(0);
-//        typedArray.recycle();
-
         mDivider = new ColorDrawable(0xffffffff);
     }
 
     /**
      * set divider size
-     *vvvvvvvv
+     * vvvvvvvv
+     *
      * @param size
      */
     public void setDividerSize(int size) {

@@ -2,6 +2,7 @@ package com.kevin.lib;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -150,6 +151,15 @@ public class KGRecyclerView extends RecyclerView {
         return this;
     }
 
+    public KGRecyclerView addDividerMargin(int leftMargin, int topMargin, int rightMargin, int buttomMargin) {
+        mLeftMargin = KGRecyclerViewUtil.getDip(mContext, leftMargin);
+        mTopMargin = KGRecyclerViewUtil.getDip(mContext, topMargin);
+        mRightMargin = KGRecyclerViewUtil.getDip(mContext, rightMargin);
+        mButtomMargin = KGRecyclerViewUtil.getDip(mContext, buttomMargin);
+
+        return this;
+    }
+
     public KGRecyclerView addDrawable(Drawable drawable) {
         mDrawable = drawable;
         return this;
@@ -161,7 +171,7 @@ public class KGRecyclerView extends RecyclerView {
     }
 
     public KGRecyclerView addDividerColor(int color) {
-        mDivideColor = color;
+        mDivideColor = ContextCompat.getColor(mContext, color);
         return this;
     }
 
@@ -203,19 +213,19 @@ public class KGRecyclerView extends RecyclerView {
             dividerLinearItemDecoration.setDrawbale(mDrawable);
         }
 
-        if (mDivideColor != 0){
+        if (mDivideColor != 0) {
             dividerLinearItemDecoration.setDividerColor(mDivideColor);
         }
 
         if (mOrientation == -1) {
-            dividerLinearItemDecoration.setOrientation(DividerLinearItemDecoration.VERTICAL_LIST);
-            ((LinearLayoutManager) mLayoutManager).setOrientation(VERTICAL_LINEAR);
-        } else {
-            dividerLinearItemDecoration.setOrientation(mOrientation);
-            ((LinearLayoutManager) mLayoutManager).setOrientation(mOrientation);
+            mOrientation = VERTICAL_LINEAR;
         }
 
-        if (mOrientation == DividerLinearItemDecoration.VERTICAL_LIST) {
+        dividerLinearItemDecoration.setOrientation(mOrientation);
+        ((LinearLayoutManager) mLayoutManager).setOrientation(mOrientation);
+
+
+        if (mOrientation == VERTICAL_LINEAR) {
             dividerLinearItemDecoration.setRightMargin(mRightMargin);
             dividerLinearItemDecoration.setLeftMargin(mLeftMargin);
         } else {
@@ -238,10 +248,9 @@ public class KGRecyclerView extends RecyclerView {
 
         if (mType == TYPE_STAGGERED) {
             if (mOrientation == -1) {
-                ((StaggeredGridLayoutManager) mLayoutManager).setOrientation(VERTICAL_STAGGERED);
-            } else {
-                ((StaggeredGridLayoutManager) mLayoutManager).setOrientation(mOrientation);
+                mOrientation = VERTICAL_STAGGERED;
             }
+            ((StaggeredGridLayoutManager) mLayoutManager).setOrientation(VERTICAL_STAGGERED);
         }
 
         dividerGridItemDecoration.setRightMargin(mRightMargin);

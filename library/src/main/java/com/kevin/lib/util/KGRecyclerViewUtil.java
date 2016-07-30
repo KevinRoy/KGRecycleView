@@ -12,11 +12,11 @@ public class KGRecyclerViewUtil {
      * 转化为dip
      *
      * @param context
-     * @param Value
+     * @param value
      * @return
      */
-    public static int getDip(Context context, int Value) {
-        int dipValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, Value, context.getResources()
+    public static int getDip(Context context, int value) {
+        int dipValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, context.getResources()
                 .getDisplayMetrics());
 
         return dipValue;

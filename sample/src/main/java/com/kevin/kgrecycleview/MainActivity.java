@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.append(strings);
 
         list.Builder(this)
-//                .addOrientation(KGRecyclerView.HORIZONTAL_LINEAR)
-                .addDividerColor(getResources().getColor(R.color.colorPrimaryDark))
+                .addDividerColor(R.color.colorAccent)
                 .addLinearlayout()
+                .addDividerMargin(20, 10 ,30, 30)
                 .addAdapter(adapter)
                 .addDividerSize(10)
                 .build();
