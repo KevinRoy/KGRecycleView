@@ -37,18 +37,18 @@ public class MainActivity extends AppCompatActivity {
         adapter = new NumRecyclerAdapter(getLayoutInflater());
 
         List<String> strings = new ArrayList<String>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 9; i++) {
             strings.add(String.valueOf(i));
         }
 
         adapter.append(strings);
-
         list.Builder(this)
                 .addDividerColor(R.color.colorAccent)
                 .addLinearlayout()
-                .addDividerMargin(20, 10 ,30, 30)
+//                .addGridlayout(3)
+                .addDividerMargin(10, 50, 10, 70)
+                .addDividerSize(1)
                 .addAdapter(adapter)
-                .addDividerSize(10)
                 .build();
     }
 }

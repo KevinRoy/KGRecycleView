@@ -209,9 +209,9 @@ public class KGRecyclerView extends RecyclerView {
         DividerLinearItemDecoration dividerLinearItemDecoration;
         dividerLinearItemDecoration = new DividerLinearItemDecoration(mContext);
 
-        if (mDrawable != null) {
-            dividerLinearItemDecoration.setDrawbale(mDrawable);
-        }
+//        if (mDrawable != null) {
+//            dividerLinearItemDecoration.setDrawbale(mDrawable);
+//        }
 
         if (mDivideColor != 0) {
             dividerLinearItemDecoration.setDividerColor(mDivideColor);
@@ -239,27 +239,31 @@ public class KGRecyclerView extends RecyclerView {
     }
 
     private void initViewStaggeredGridLayoutManager() {
-        DividerGridItemDecoration dividerGridItemDecoration;
-        dividerGridItemDecoration = new DividerGridItemDecoration(mContext);
-
-        if (mDrawable != null) {
-            dividerGridItemDecoration.setDrawbale(mDrawable);
-        }
-
-        if (mType == TYPE_STAGGERED) {
-            if (mOrientation == -1) {
-                mOrientation = VERTICAL_STAGGERED;
-            }
-            ((StaggeredGridLayoutManager) mLayoutManager).setOrientation(VERTICAL_STAGGERED);
-        }
-
-        dividerGridItemDecoration.setRightMargin(mRightMargin);
-        dividerGridItemDecoration.setLeftMargin(mLeftMargin);
-        dividerGridItemDecoration.setButtomMargin(mButtomMargin);
-        dividerGridItemDecoration.setTopMargin(mTopMargin);
-
-        dividerGridItemDecoration.setDividerSize(mDivideSize);
-
-        addItemDecoration(dividerGridItemDecoration);
+//        DividerGridItemDecoration dividerGridItemDecoration;
+//        dividerGridItemDecoration = new DividerGridItemDecoration(mContext);
+//
+////        if (mDrawable != null) {
+////            dividerGridItemDecoration.setDrawbale(mDrawable);
+////        }
+////
+////        if (mDivideColor != 0) {
+////            dividerGridItemDecoration.setDividerColor(mDivideColor);
+////        }
+//
+//        if (mType == TYPE_STAGGERED) {
+//            if (mOrientation == -1) {
+//                mOrientation = VERTICAL_STAGGERED;
+//            }
+//            ((StaggeredGridLayoutManager) mLayoutManager).setOrientation(VERTICAL_STAGGERED);
+//        }
+//
+//        dividerGridItemDecoration.setRightMargin(mRightMargin);
+//        dividerGridItemDecoration.setLeftMargin(mLeftMargin);
+//        dividerGridItemDecoration.setButtomMargin(mButtomMargin);
+//        dividerGridItemDecoration.setTopMargin(mTopMargin);
+//
+//        dividerGridItemDecoration.setDividerSize(mDivideSize);
+//
+//        addItemDecoration(dividerGridItemDecoration);
     }
 }

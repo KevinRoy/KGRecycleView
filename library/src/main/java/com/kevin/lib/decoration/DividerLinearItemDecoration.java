@@ -1,13 +1,19 @@
 package com.kevin.lib.decoration;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+
+import com.kevin.lib.R;
 
 /**
  * recycleView的Linear的ItemDecoration
@@ -19,16 +25,18 @@ public class DividerLinearItemDecoration extends BaseDividerItemDecoration {
 
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
 
+    private Context mContext;
+
     private int mOrientation;
 
     public DividerLinearItemDecoration(Context context) {
-        initDivider(context);
         setOrientation(VERTICAL_LIST);
+        mContext = context;
     }
 
     public DividerLinearItemDecoration(Context context, int orientation) {
-        initDivider(context);
         setOrientation(orientation);
+        mContext = context;
     }
 
     public void setOrientation(int orientation) {
@@ -57,9 +65,12 @@ public class DividerLinearItemDecoration extends BaseDividerItemDecoration {
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             int top = child.getBottom() + params.bottomMargin;
-            int bottom = top + mDivider.getIntrinsicHeight() + mDividerSize;
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+            int bottom = top + mDividerSize;
+
+            if (mDividerSize > 0 && mDividerColor != 0) {
+                mPaint.setColor(mDividerColor);
+                c.drawRect(left, top, right, bottom, mPaint);
+            }
         }
     }
 
@@ -73,9 +84,12 @@ public class DividerLinearItemDecoration extends BaseDividerItemDecoration {
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             int left = child.getRight() + params.rightMargin;
-            int right = left + mDivider.getIntrinsicHeight() + mDividerSize;
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+            int right = left + mDividerSize;
+
+            if (mDividerSize > 0 && mDividerColor != 0) {
+                mPaint.setColor(mDividerColor);
+                c.drawRect(left, top, right, bottom, mPaint);
+            }
         }
     }
 
@@ -86,15 +100,15 @@ public class DividerLinearItemDecoration extends BaseDividerItemDecoration {
 
         if (mOrientation == VERTICAL_LIST) {
             if (postion == size - 1) {
-                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+                outRect.set(0, 0, 0, 0);
             } else {
-                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight() + mDividerSize);
+                outRect.set(0, 0, 0, 0 + mDividerSize);
             }
         } else {
             if (postion == size - 1) {
-                outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+                outRect.set(0, 0, 0, 0);
             } else {
-                outRect.set(0, 0, mDivider.getIntrinsicWidth() + mDividerSize, 0);
+                outRect.set(0, 0, 0 + mDividerSize, 0);
             }
         }
     }

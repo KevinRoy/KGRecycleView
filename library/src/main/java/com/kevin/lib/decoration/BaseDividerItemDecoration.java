@@ -2,9 +2,11 @@ package com.kevin.lib.decoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 
 /**
@@ -13,26 +15,16 @@ import android.support.v7.widget.RecyclerView;
  */
 public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
 
-    protected ColorDrawable mDivider;
-    protected Drawable mDrawable;
     protected int mDividerSize;
+    protected int mDividerColor;
     protected int mRightMargin = 0;
     protected int mLeftMargin = 0;
     protected int mTopMargin = 0;
     protected int mButtomMargin = 0;
-
-    /**
-     * init Divider
-     *
-     * @param context
-     */
-    protected void initDivider(Context context) {
-        mDivider = new ColorDrawable(0xffffffff);
-    }
+    protected Paint mPaint;
 
     /**
      * set divider size
-     * vvvvvvvv
      *
      * @param size
      */
@@ -40,12 +32,13 @@ public class BaseDividerItemDecoration extends RecyclerView.ItemDecoration {
         mDividerSize = size;
     }
 
-    public void setDrawbale(Drawable drawable) {
-        mDivider = (ColorDrawable) drawable;
-    }
-
     public void setDividerColor(int color) {
-        mDivider.setColor(color);
+        mDividerColor = color;
+
+        if (mPaint == null) {
+            mPaint = new Paint();
+            mPaint.setAntiAlias(true);
+        }
     }
 
     public void setRightMargin(int rightMargin) {
